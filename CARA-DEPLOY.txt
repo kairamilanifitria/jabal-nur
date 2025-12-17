@@ -1,0 +1,390 @@
+================================================================================
+PANDUAN DEPLOY WEBSITE KE VERCEL & RAILWAY
+================================================================================
+
+Website sudah siap! Sekarang saatnya meng-online-kan website Anda agar bisa
+diakses oleh siapa saja di internet.
+
+Panduan ini mencakup 2 platform hosting gratis:
+1. VERCEL (Rekomendasi - Paling Mudah) ⭐
+2. RAILWAY
+
+================================================================================
+METODE 1: DEPLOY KE VERCEL (REKOMENDASI) ⭐
+================================================================================
+
+Vercel adalah platform hosting GRATIS yang sangat mudah digunakan dan cepat.
+Cocok untuk static website seperti website yayasan ini.
+
+LANGKAH-LANGKAH:
+
+1. BUAT AKUN VERCEL
+   ────────────────
+   • Buka: https://vercel.com/
+   • Klik "Sign Up" atau "Start Deploying"
+   • Pilih "Continue with GitHub" (Rekomendasi)
+     ATAU "Continue with Email"
+   • Ikuti proses registrasi
+
+2. INSTALL VERCEL CLI (OPTIONAL - Cara Manual)
+   ──────────────────────────────────────────
+   Jika ingin deploy via command line:
+   
+   a) Install Node.js dulu dari: https://nodejs.org/
+   b) Buka Command Prompt / Terminal
+   c) Jalankan: npm install -g vercel
+   d) Login: vercel login
+
+3. DEPLOY DENGAN DRAG & DROP (CARA TERMUDAH) 🚀
+   ────────────────────────────────────────────
+   
+   a) Login ke dashboard Vercel: https://vercel.com/dashboard
+   
+   b) Klik tombol "Add New..." → "Project"
+   
+   c) PENTING: Siapkan struktur folder website Anda:
+      
+      yayasan-jabal-nur/
+      ├── index.html
+      └── images/
+          ├── logo.png
+          ├── hero-bg.jpg
+          ├── about.jpg
+          └── gallery-1.jpg sampai gallery-6.jpg
+   
+   d) Compress folder "yayasan-jabal-nur" menjadi ZIP
+      (Klik kanan folder → Send to → Compressed folder)
+   
+   e) Di Vercel, pilih "Deploy" atau drag & drop file ZIP ke area yang tersedia
+   
+   f) Tunggu proses deploy (biasanya 30-60 detik)
+   
+   g) Selesai! Website Anda sudah online! 🎉
+      URL: https://nama-project.vercel.app
+
+4. DEPLOY VIA GITHUB (CARA ADVANCED)
+   ─────────────────────────────────
+   
+   a) Buat repository di GitHub:
+      - Buka: https://github.com/new
+      - Beri nama: yayasan-jabal-nur
+      - Klik "Create repository"
+   
+   b) Upload file website ke GitHub:
+      - Klik "uploading an existing file"
+      - Drag & drop semua file (index.html dan folder images)
+      - Commit changes
+   
+   c) Kembali ke Vercel Dashboard
+   
+   d) Klik "Add New..." → "Project"
+   
+   e) Pilih "Import Git Repository"
+   
+   f) Pilih repository "yayasan-jabal-nur"
+   
+   g) Klik "Deploy"
+   
+   h) Tunggu proses build
+   
+   i) Selesai! Website online! 🎉
+
+5. CUSTOM DOMAIN (OPTIONAL)
+   ────────────────────────
+   
+   Jika punya domain sendiri (misal: yayasanjabalnur.com):
+   
+   a) Di dashboard Vercel, pilih project Anda
+   b) Klik tab "Settings"
+   c) Pilih "Domains"
+   d) Tambahkan domain Anda
+   e) Ikuti instruksi untuk setting DNS di provider domain
+   f) Tunggu propagasi (bisa 1-24 jam)
+
+6. UPDATE WEBSITE
+   ──────────────
+   
+   Jika ingin update konten website:
+   
+   Via Drag & Drop:
+   - Edit file index.html di komputer
+   - Drag & drop lagi ke Vercel
+   - Vercel otomatis re-deploy
+   
+   Via GitHub:
+   - Edit file di GitHub atau push perubahan
+   - Vercel otomatis detect dan re-deploy
+
+================================================================================
+METODE 2: DEPLOY KE RAILWAY
+================================================================================
+
+Railway juga platform hosting gratis yang bagus.
+
+LANGKAH-LANGKAH:
+
+1. BUAT AKUN RAILWAY
+   ────────────────
+   • Buka: https://railway.app/
+   • Klik "Login" atau "Start a New Project"
+   • Login dengan GitHub (Rekomendasi)
+
+2. SIAPKAN FILE
+   ───────────
+   
+   Railway membutuhkan struktur khusus untuk static site:
+   
+   a) Buat file baru bernama "railway.json" di folder yayasan-jabal-nur/
+   
+   b) Isi file railway.json dengan:
+   
+   {
+     "build": {
+       "builder": "NIXPACKS"
+     },
+     "deploy": {
+       "startCommand": "python -m http.server 8080",
+       "restartPolicyType": "ON_FAILURE"
+     }
+   }
+
+3. UPLOAD KE GITHUB
+   ────────────────
+   
+   a) Buat repository GitHub (jika belum):
+      - https://github.com/new
+      - Nama: yayasan-jabal-nur
+   
+   b) Upload semua file (termasuk railway.json)
+
+4. DEPLOY DI RAILWAY
+   ─────────────────
+   
+   a) Login ke Railway Dashboard: https://railway.app/dashboard
+   
+   b) Klik "New Project"
+   
+   c) Pilih "Deploy from GitHub repo"
+   
+   d) Pilih repository "yayasan-jabal-nur"
+   
+   e) Klik "Deploy Now"
+   
+   f) Tunggu proses build (2-5 menit)
+   
+   g) Setelah selesai, klik "Settings" → "Domains"
+   
+   h) Klik "Generate Domain"
+   
+   i) Selesai! Website online di: https://nama-project.railway.app
+
+5. CUSTOM DOMAIN DI RAILWAY
+   ────────────────────────
+   
+   a) Di project settings, pilih tab "Domains"
+   b) Klik "Custom Domain"
+   c) Masukkan domain Anda
+   d) Setting DNS sesuai instruksi
+   e) Tunggu propagasi DNS
+
+================================================================================
+PERBANDINGAN VERCEL VS RAILWAY
+================================================================================
+
+┌─────────────────┬──────────────────┬──────────────────┐
+│ Feature         │ VERCEL           │ RAILWAY          │
+├─────────────────┼──────────────────┼──────────────────┤
+│ Kemudahan       │ ⭐⭐⭐⭐⭐        │ ⭐⭐⭐⭐         │
+│ Kecepatan       │ Sangat Cepat     │ Cepat            │
+│ Free Tier       │ Unlimited        │ Terbatas         │
+│ SSL (HTTPS)     │ Otomatis         │ Otomatis         │
+│ Custom Domain   │ Mudah            │ Mudah            │
+│ Bandwidth       │ 100GB/bulan      │ Terbatas         │
+│ Build Time      │ Cepat (30s)      │ Sedang (2-5m)    │
+│ Cocok untuk     │ Static Sites ✅  │ Apps & Static ✅ │
+└─────────────────┴──────────────────┴──────────────────┘
+
+REKOMENDASI: Gunakan VERCEL untuk kemudahan dan kecepatan! ⭐
+
+================================================================================
+METODE 3: HOSTING ALTERNATIF LAINNYA
+================================================================================
+
+Jika Vercel dan Railway tidak cocok, ada alternatif lain:
+
+1. NETLIFY
+   - Website: https://netlify.com/
+   - Cara: Mirip dengan Vercel (drag & drop)
+   - Gratis dan mudah
+
+2. GITHUB PAGES
+   - Website: https://pages.github.com/
+   - Gratis unlimited
+   - Harus via GitHub repository
+   - URL: username.github.io/repository-name
+
+3. CLOUDFLARE PAGES
+   - Website: https://pages.cloudflare.com/
+   - Gratis unlimited
+   - Sangat cepat (CDN global)
+   - Harus via GitHub
+
+4. FIREBASE HOSTING
+   - Website: https://firebase.google.com/
+   - Gratis dengan quota
+   - Bagus untuk project yang berkembang
+
+================================================================================
+TIPS SETELAH DEPLOY
+================================================================================
+
+1. ✅ TESTING WEBSITE
+   ──────────────────
+   Setelah deploy, cek:
+   - Apakah semua halaman bisa diakses?
+   - Apakah gambar tampil semua?
+   - Apakah tombol WhatsApp berfungsi?
+   - Coba akses dari HP (mobile view)
+   - Test form kontak
+
+2. ✅ SEO & GOOGLE
+   ───────────────
+   - Daftarkan ke Google Search Console
+   - Submit sitemap (bisa buat online)
+   - Daftarkan di Google My Business
+   - Minta review dari donatur
+
+3. ✅ MONITORING
+   ─────────────
+   - Install Google Analytics (opsional)
+   - Pantau visitor dengan Vercel Analytics
+   - Check website speed di PageSpeed Insights
+
+4. ✅ BACKUP
+   ─────────
+   - Simpan copy file di komputer
+   - Backup di Google Drive / Dropbox
+   - Gunakan Git/GitHub untuk version control
+
+5. ✅ MAINTENANCE
+   ──────────────
+   - Update konten secara berkala
+   - Tambah foto galeri rutin
+   - Update info kegiatan terbaru
+   - Cek broken links setiap bulan
+
+================================================================================
+TROUBLESHOOTING - MASALAH UMUM
+================================================================================
+
+1. "Website tidak bisa diakses setelah deploy"
+   ➜ Tunggu 1-5 menit untuk propagasi
+   ➜ Clear cache browser (Ctrl + Shift + Del)
+   ➜ Coba akses dari incognito/private mode
+
+2. "Gambar tidak muncul di website online"
+   ➜ Pastikan folder images/ ter-upload
+   ➜ Check case sensitive (logo.png vs Logo.PNG)
+   ➜ Cek path di index.html (images/logo.png)
+
+3. "Error 404 Not Found"
+   ➜ Pastikan file bernama "index.html" (lowercase)
+   ➜ Cek apakah file ada di root directory
+
+4. "Build Failed di Railway"
+   ➜ Pastikan railway.json ada dan benar
+   ➜ Check syntax error di file
+   ➜ Lihat build logs untuk detail error
+
+5. "Domain custom tidak work"
+   ➜ Tunggu propagasi DNS (bisa sampai 24 jam)
+   ➜ Cek setting DNS di domain provider
+   ➜ Pastikan sudah tambahkan CNAME/A record
+
+6. "Website lambat loading"
+   ➜ Compress gambar (gunakan TinyPNG.com)
+   ➜ Resize gambar jangan terlalu besar
+   ➜ Gunakan format WebP untuk gambar
+
+================================================================================
+CARA MENDAPATKAN DOMAIN MURAH
+================================================================================
+
+Jika ingin custom domain (misal: yayasanjabalnur.com):
+
+1. DOMAIN PROVIDER INDONESIA:
+   - Niagahoster.co.id (mulai Rp 15.000/tahun)
+   - Rumahweb.com
+   - Domainesia.com
+   - IDCloudHost.com
+
+2. DOMAIN PROVIDER INTERNASIONAL:
+   - Namecheap.com (murah, banyak promo)
+   - Cloudflare.com (at cost, tanpa markup)
+   - GoDaddy.com
+   - Google Domains
+
+3. TIPS BELI DOMAIN:
+   - Pilih domain .com atau .id
+   - Jangan lupa perpanjang tiap tahun
+   - Aktifkan domain privacy (hide info pribadi)
+   - Set auto-renewal biar tidak expired
+
+================================================================================
+CARA SHARE WEBSITE
+================================================================================
+
+Setelah website online, share ke:
+
+✅ MEDIA SOSIAL:
+   - Facebook: Post link + screenshot
+   - Instagram: Link di bio + story
+   - WhatsApp: Broadcast ke donatur
+   - Twitter: Tweet dengan hashtag
+
+✅ OFFLINE:
+   - Cetak QR Code (buat di qr-code-generator.com)
+   - Pasang di banner/spanduk yayasan
+   - Cantumkan di brosur
+   - Tambahkan di kartu nama
+
+✅ EMAIL:
+   - Kirim ke database donatur
+   - Newsletter bulanan
+   - Email signature
+
+================================================================================
+BANTUAN & SUPPORT
+================================================================================
+
+Jika ada masalah saat deploy:
+
+1. DOKUMENTASI RESMI:
+   - Vercel: https://vercel.com/docs
+   - Railway: https://docs.railway.app/
+
+2. COMMUNITY:
+   - Reddit: r/webdev
+   - Stack Overflow
+   - Discord Vercel/Railway
+
+3. VIDEO TUTORIAL:
+   - YouTube: "cara deploy website ke vercel"
+   - YouTube: "vercel tutorial indonesia"
+
+4. HIRE DEVELOPER:
+   - Fiverr.com
+   - Sribulancer.com
+   - Upwork.com
+
+================================================================================
+
+Selamat! Website Anda sudah siap di-online-kan! 🎉
+Semoga website ini bermanfaat untuk yayasan dan membantu lebih banyak anak! 
+
+Jangan lupa update konten secara berkala dan share link website ke 
+donatur dan calon donatur! 💚
+
+Good luck! 🚀
+
+================================================================================
